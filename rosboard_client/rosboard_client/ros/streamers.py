@@ -106,6 +106,8 @@ class GenericStreamer:
             qos = qos_profile_sensor_data
             topic_class_name = topic_type
         else:
+            if(topic_info[0].qos_profile.history == HistoryPolicy.UNKNOWN):
+                topic_info[0].qos_profile.history = HistoryPolicy.KEEP_LAST
             qos = topic_info[0].qos_profile
             # use topic type from the first publisher if not provided
             topic_class_name = (
